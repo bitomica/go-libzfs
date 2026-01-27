@@ -20,16 +20,12 @@ import "C"
 
 import (
 	"errors"
+	"fmt"
 	"sync"
 )
 
 // VDevType type of device in the pool
 type VDevType string
-
-func init() {
-	C.go_libzfs_init()
-	return
-}
 
 // Types of Virtual Devices
 const (
@@ -579,4 +575,11 @@ func GetStatusMessages(status PoolStatus) (msg, action string) {
 		action = ""
 	}
 	return msg, action
+}
+
+func Init() error {
+	if C.go_libzfs_init() != 0 {
+		return fmt.Errorf("Cannot initialize libzfs")
+	}
+	return nil
 }

@@ -2,7 +2,13 @@ package zfs_test
 
 import (
 	"testing"
+
+	zfs "github.com/bitomia/go-libzfs"
 )
+
+func init() {
+	zfs.Init()
+}
 
 /* ------------------------------------------------------------------------- */
 // TESTS ARE DEPENDED AND MUST RUN IN DEPENDENT ORDER
